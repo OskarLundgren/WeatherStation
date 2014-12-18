@@ -3,14 +3,44 @@
 #include "Temp_Module.h"
 #include "Display_Module.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 
 
 char floatToChar[6];
-float tempLog[1440];
+float tempLog[60];
 int tempLogPosition = 0;
 float temp;
 int oneMinute = 0;
+
+typedef struct{
+  
+  float minValue;
+  float maxValue;
+  float avgValue;
+  
+  
+} Day;
+
+Day *New_Day(float min, float max, float avg){
+  
+  Day *newDay;
+  newDay = (Day *)malloc(sizeof(Day));
+  
+  if(newDay == NULL){
+    printf("Trouble in paradise");
+    return 0;
+  }
+  else{
+    newDay->avgValue = avg;
+    newDay->maxValue = max;
+    newDay->minValue = min;
+  
+  }
+  
+  return newDay;
+}
+
+
 void Init_Temp(void){
   
   *AT91C_PMC_PCER = 1<<27|1<<12; //1<<27: start clock for TC0, 1<<12: start clock for PIOB
@@ -35,7 +65,7 @@ void Timer_Setup(void){
   
   *AT91C_TC3_CMR = AT91C_TC_CLKS_TIMER_DIV1_CLOCK|AT91C_TC_WAVESEL_UP_AUTO;
   *AT91C_TC3_CCR = AT91C_TC_SWTRG|AT91C_TC_CLKEN;
-  *AT91C_TC3_RC = normalMode;
+  *AT91C_TC3_RC = fastMode;
   *AT91C_TC3_IER = AT91C_TC_CPCS;
   
   NVIC_ClearPendingIRQ(TC3_IRQn);
@@ -114,4 +144,68 @@ int Size_Of_TempLog(){
 
 }
 
+void Add_Values(void){
+  float maxValue;
+  float minValue;
+  float avgValue;
+  
+  maxValue = Find_Max();
+  minValue = Find_Min();
+  avgValue = Find_Average();
+  
+  Day newDay;
+  
+  newDay = *New_Day(minValue,maxValue,avgValue);
+  
+}
+
+
+float Find_Max(){
+  
+  float maxTemp;
+  float thisTemp;
+  maxTemp = -272;
+  int i;
+  for(i = 0; i < sizeof(tempLog)/4; i++){
+    
+    thisTemp = tempLog[i];
+    if(thisTemp > maxTemp){
+      maxTemp = thisTemp;
+    }
+  
+  }
+  return maxTemp;
+
+
+}
+
+float Find_Min(){
+  float minTemp;
+  float thisTemp;
+  minTemp = 150;
+  int i;
+  for(i = 0; i < sizeof(tempLog)/4; i++){
+    thisTemp = tempLog[i];
+    if(thisTemp < minTemp){
+      minTemp = thisTemp;
+    
+    }
+  
+  }
+   return minTemp;
+}
+
+float Find_Average(){
+  float avgTemp;
+  float calculateTemp;
+  calculateTemp = 0;
+  int i;
+  for(i = 0; i < sizeof(tempLog)/4; i++){
+  
+    calculateTemp = calculateTemp + tempLog[i];
+  }
+  
+  avgTemp = calculateTemp/(sizeof(tempLog)/4);
+  return avgTemp;
+}
 

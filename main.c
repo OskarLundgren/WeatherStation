@@ -37,7 +37,9 @@ int main(){
     }
 
 
-    if(logTempPosition+1 == logTempSize){
+    if(tempLogPosition == logTempSize){
+      Add_Values();
+      //Reset_TempLog();
     } 
   }
   
