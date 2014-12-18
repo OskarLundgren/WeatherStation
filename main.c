@@ -38,8 +38,6 @@ int main(){
 
 
     if(logTempPosition+1 == logTempSize){
-      Calculate_Values();
-      Reset_Daily_TempLog();
     } 
   }
   
