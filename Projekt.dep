@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3942778070</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\at91sam3x8.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\arduino_due_x_sram.mac</file>
+      <file>$PROJ_DIR$\Common_Functions.h</file>
+      <file>$PROJ_DIR$\Common_Functions.c</file>
+      <file>$PROJ_DIR$\Common_Variables.h</file>
+      <file>$PROJ_DIR$\core_cm3.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\core_cmInstr.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\core_cmFunc.h</file>
+      <file>$PROJ_DIR$\Display_Module.c</file>
+      <file>$PROJ_DIR$\cstartup.s</file>
+      <file>$PROJ_DIR$\Display_Module.h</file>
+      <file>$PROJ_DIR$\exceptions.c</file>
+      <file>$PROJ_DIR$\Keypad_Module.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\exceptions.h</file>
+      <file>$PROJ_DIR$\Keypad_Module.c</file>
+      <file>$PROJ_DIR$\Light_Module.c</file>
+      <file>$PROJ_DIR$\Light_Module.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\startup_sam3x.c</file>
+      <file>$PROJ_DIR$\system_sam3x.c</file>
+      <file>$PROJ_DIR$\Temp_Module.c</file>
+      <file>$PROJ_DIR$\Temp_Module.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\cstartup.s</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\core_cm3.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Temp_Module.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\Keypad_Module.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\cstartup.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\Light_Module.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\system_sam3x.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\exceptions.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Temp_Module.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\exceptions.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Keypad_Module.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Light_Module.pbi</file>
+      <file>$PROJ_DIR$\at91sam3x8.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ystdio.h</file>
+      <file>$PROJ_DIR$\core_cmInstr.h</file>
+      <file>$PROJ_DIR$\core_cmFunc.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\config\linker\Atmel\sam3x8e\sram.icf</file>
+      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+      <file>$PROJ_DIR$\system_sam3x.h</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\Common_Functions.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\Common_Functions.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\system_sam3x.c</file>
+      <file>$PROJ_DIR$\exceptions.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\exceptions.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\system_sam3x.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\startup_sam3x.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Projekt.pbd</file>
+      <file>$PROJ_DIR$\Debug\Exe\c.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\Display_Module.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\system_sam3x.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Display_Module.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Common_Functions.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 59</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35 45 47 44 5 26 39 48 56 42 28 27 50 41 31 2</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 2 56 45 39 35 42 27 50 26 28 5 47 41 31 48 44</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Display_Module.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 69</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 39 28 41 31 27 35 56 10 50 2 44 45 5 26 47 48 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 56 45 39 35 42 27 50 26 28 5 47 41 31 48 44 10 4 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\cstartup.s</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\exceptions.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Keypad_Module.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 39 26 5 48 45 35 47 2 4 56 42 28 27 50 41 31 12</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12 4 56 45 39 35 42 27 50 26 28 5 47 41 31 48 44 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Light_Module.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 56 50 39 42 28 27 35 41 31 44 2 45 5 26 47 48 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 4 56 45 39 35 42 27 50 26 28 5 47 41 31 48 44 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 66</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 56 45 39 35 42 27 50 26 28 5 47 41 31 48 44 4 2 10 12 16 21 72 55</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\startup_sam3x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35 5 62 26 39 44 45 47 48 42 28 27 50 41 31</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 44 62 5 45 39 35 42 27 50 26 28 47 41 31 48</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\system_sam3x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 70</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48 39 45 47 56 42 41 44 5 35 26 28 27 50 31</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 44 56 45 39 35 42 27 50 26 28 5 47 41 31 48</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Temp_Module.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 50 56 45 2 52 26 21 5 35 28 27 55 10 44 39 42 47 48 4 31 46</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 4 56 45 39 35 42 27 50 26 28 5 47 41 31 48 44 2 21 10 52 55 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\cstartup.s</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 68</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\system_sam3x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 70</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7 39 45 6 64 42 41 0 23 35 26 28 27 50 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\exceptions.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Documents and Settings\Administrator\My Documents\DST\Labb1\startup_sam3x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35 23 13 26 39 0 45 6 7 42 28 27 50 41 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\c.out</name>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 54 59 29 71 36 40 30 49 38 32 24 51 53 57 58</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+
