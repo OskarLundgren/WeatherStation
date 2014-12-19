@@ -13,24 +13,15 @@ int tempLogPosition = 0;
 float temp;
 int oneMinute = 0;
 int weekday = 0;
-Day newDay;
 
 
 Day New_Day(float min, float max, float avg){
   
   Day New_Day;
-//  New_Day = (Day *)malloc(sizeof(Day));
-  
-//  if(New_Day == NULL){
-//    printf("Trouble in paradise");
-//    return 0;
-//  }
-//  else{
     
     New_Day.minValue = min;
     New_Day.maxValue = max;
     New_Day.avgValue = avg;  
-//  }
   
   return New_Day;
 }
@@ -161,6 +152,7 @@ void Add_Values(void){
   
   
   newDay = New_Day(minValue,maxValue,avgValue);
+  weekLog[weekday] = newDay;
   
 }
 
