@@ -132,11 +132,7 @@ int Size_Of_TempLog(){
 
 void Reset_TempLog(void){
 
-  if(weekday == 7)
-    weekday = 0;
-  
-  weekLog[weekday] = newDay;
-  weekday++;
+	tempLogPosition = 0;
 
 }
 
@@ -152,7 +148,7 @@ void Add_Values(void){
   
   
   newDay = New_Day(minValue,maxValue,avgValue);
-  weekLog[weekday] = newDay;
+  weekLog[weekday++] = newDay;
   
 }
 
