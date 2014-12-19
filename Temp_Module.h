@@ -4,7 +4,16 @@
 extern float temp;
 extern int oneMinute;
 extern int tempLogPosition;
-extern float tempLog[60];
+extern float tempLog[10];
+
+typedef struct day{
+  
+  float minValue;
+  float maxValue;
+  float avgValue;
+  
+  
+} Day;
 void Init_Temp(void);
 
 void Temp_Measure(void);

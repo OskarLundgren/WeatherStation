@@ -6,7 +6,7 @@
 #include "Keypad_Module.h"
 #include "Light_Module.h"
 #include "Temp_Module.h"
-#include <stdlib.h> // Hej
+#include <stdlib.h>
 
 
 int main(){
@@ -39,6 +39,7 @@ int main(){
 
     if(tempLogPosition == logTempSize){
       Add_Values();
+      tempLogPosition = 0;
       //Reset_TempLog();
     } 
   }
