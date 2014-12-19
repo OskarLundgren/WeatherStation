@@ -8,6 +8,7 @@
 #include "Temp_Module.h"
 #include <stdlib.h>
 
+//nu loggar den alla sju dagar pa ett fungerande satt!
 
 int main(){
   SystemInit();
@@ -36,11 +37,10 @@ int main(){
     oneMinute = 0;
     }
 
-
     if(tempLogPosition == logTempSize){
       Add_Values();
       tempLogPosition = 0;
-      //Reset_TempLog();
+      Reset_TempLog();
     } 
   }
   

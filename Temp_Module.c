@@ -8,27 +8,29 @@
 
 char floatToChar[6];
 float tempLog[10];
+Day weekLog[7];
 int tempLogPosition = 0;
 float temp;
 int oneMinute = 0;
-Day* newDay;
+int weekday = 0;
+Day newDay;
 
 
-Day* New_Day(float min, float max, float avg){
+Day New_Day(float min, float max, float avg){
   
-  Day* New_Day;
-  New_Day = (Day *)malloc(sizeof(Day));
+  Day New_Day;
+//  New_Day = (Day *)malloc(sizeof(Day));
   
-  if(New_Day == NULL){
-    printf("Trouble in paradise");
-    return 0;
-  }
-  else{
+//  if(New_Day == NULL){
+//    printf("Trouble in paradise");
+//    return 0;
+//  }
+//  else{
     
-    New_Day->minValue = min;
-    New_Day->maxValue = max;
-    New_Day->avgValue = avg;  
-  }
+    New_Day.minValue = min;
+    New_Day.maxValue = max;
+    New_Day.avgValue = avg;  
+//  }
   
   return New_Day;
 }
@@ -137,9 +139,19 @@ int Size_Of_TempLog(){
 
 }
 
+void Reset_TempLog(void){
+
+  if(weekday == 7)
+    weekday = 0;
+  
+  weekLog[weekday] = newDay;
+  weekday++;
+
+}
+
 void Add_Values(void){
   float maxValue;
-  float minValue;
+  float minValue; 
   float avgValue;
   
   maxValue = Find_Max();
