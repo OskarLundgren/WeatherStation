@@ -14,6 +14,7 @@ int main(){
   SystemInit();
   Init_Display();
   Init_Temp();
+  Init_Keypad();
   Timer_Setup();
   Temp_Measure();
   Update_Temp();
@@ -21,12 +22,10 @@ int main(){
   Setup_Interrupts(1);
   Print_Menu();
 
-  
+  int button;
   int logTempSize;
   logTempSize = Size_Of_TempLog();
-  while(1){
-    
-      
+  while(1){      
     if(nInterrupts == 1){
       Temp_Measure();
       Update_Temp();
@@ -37,12 +36,16 @@ int main(){
     Log_Temp();
     oneMinute = 0;
     }
-
     if(tempLogPosition == logTempSize){
      Add_Values();
       tempLogPosition = 0;
       Reset_TempLog();
-    } 
+    }
+    
+    button = Read_Keypad();
+    if(buttonWasPressed == 1){
+    Keypad_Menu_Action(button);
+    }
   }
   
   return 0;

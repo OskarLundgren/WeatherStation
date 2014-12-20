@@ -2,6 +2,7 @@
 #include "at91sam3x8.h"
 #include "Display_Module.h"
 #include "Common_Functions.h"
+#include "Temp_Module.h"
 
 void Clear_Display(){
 
@@ -152,22 +153,31 @@ void setADP(int x,int y){
 
 void Print_Menu(void){
 
-   setADP(1,4);
-   Print_To_Screen("1 - Statistics for the last 7 days");
-   setADP(1,6);
-   Print_To_Screen("2 - Find the orientation of the sun");
-   setADP(1,8);
-   Print_To_Screen("3 - Set a alarm for upper/lower temp");
-   setADP(1,10);
-   Print_To_Screen("4 - Enter fastmode (for simulation)");
+   Print_To_Screen("1 - Statistics for the last 7 days",1,4);
+   Print_To_Screen("2 - Find the orientation of the sun",1,6);
+   Print_To_Screen("3 - Set a alarm for upper/lower temp",1,8);
+   Print_To_Screen("4 - Enter fastmode (for simulation)",1,10);
    
       
 
 }
 
+void Print_Statistics(void){
+  
+    Print_To_Screen("Mon", 1, 4);
+    Print_To_Screen("Tue", 5, 4);
+    Print_To_Screen("Wed", 9, 4);
+    Print_To_Screen("Thu", 13, 4);
+    Print_To_Screen("Fri", 17, 4);
+    Print_To_Screen("Sat", 21, 4);
+    Print_To_Screen("Sun", 25, 4);
+  
+}
 
-void Print_To_Screen(char text[]){
+
+void Print_To_Screen(char text[], int x, int y){
   int i = 0;
+  setADP(x,y);
   while(text[i] != '\0'){
       Write_Data_2_Display(text[i]-0x20);
       Write_Command_2_Display(0xC0);

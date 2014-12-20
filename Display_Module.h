@@ -17,6 +17,8 @@ void setADP(int x,int y);
 
 void Print_Menu(void);
 
-void Print_To_Screen(char text[]);
+void Print_Statistics(void);
+
+void Print_To_Screen(char text[], int x, int y);
 
 #endif
