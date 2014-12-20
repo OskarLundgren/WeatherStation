@@ -19,6 +19,7 @@ int main(){
   Update_Temp();
   Print_Temperature();
   Setup_Interrupts(1);
+  Print_Menu();
 
   
   int logTempSize;
@@ -38,7 +39,7 @@ int main(){
     }
 
     if(tempLogPosition == logTempSize){
-      Add_Values();
+     Add_Values();
       tempLogPosition = 0;
       Reset_TempLog();
     } 

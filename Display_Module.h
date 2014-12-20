@@ -15,4 +15,8 @@ void Init_Display(void);
 
 void setADP(int x,int y);
 
+void Print_Menu(void);
+
+void Print_To_Screen(char text[]);
+
 #endif

@@ -8,12 +8,13 @@
 
 char floatToChar[6];
 float tempLog[10];
-Day weekLog[7];
+Day weekBuffer[7];
 int tempLogPosition = 0;
 float temp;
 int oneMinute = 0;
-int weekday = 0;
-
+int lastDayInBuffer = 0;
+int firstDayInBuffer = -1;
+Day newDay;
 
 Day New_Day(float min, float max, float avg){
   
@@ -148,7 +149,8 @@ void Add_Values(void){
   
   
   newDay = New_Day(minValue,maxValue,avgValue);
-  weekLog[weekday++] = newDay;
+  weekBuffer[lastDayInBuffer++] = newDay;
+  firstDayInBuffer++;
   
 }
 

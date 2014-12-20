@@ -149,3 +149,31 @@ void setADP(int x,int y){
   Write_Command_2_Display(0x24);
 
 }
+
+void Print_Menu(void){
+
+   setADP(1,4);
+   Print_To_Screen("1 - Statistics for the last 7 days");
+   setADP(1,6);
+   Print_To_Screen("2 - Find the orientation of the sun");
+   setADP(1,8);
+   Print_To_Screen("3 - Set a alarm for upper/lower temp");
+   setADP(1,10);
+   Print_To_Screen("4 - Enter fastmode (for simulation)");
+   
+      
+
+}
+
+
+void Print_To_Screen(char text[]){
+  int i = 0;
+  while(text[i] != '\0'){
+      Write_Data_2_Display(text[i]-0x20);
+      Write_Command_2_Display(0xC0);
+      i++;
+        
+  
+  }       
+  
+}
