@@ -5,6 +5,7 @@ extern float temp;
 extern int oneMinute;
 extern int tempLogPosition;
 extern float tempLog[10];
+extern Day weekBuffer[7];
 
 typedef struct day{
   
@@ -41,5 +42,7 @@ float Find_Max();
 float Find_Min();
 
 float Find_Average();
+
+char [] Convert_Day_To_Char(Day theDay);
 
 #endif

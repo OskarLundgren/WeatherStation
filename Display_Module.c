@@ -163,8 +163,10 @@ void Print_Menu(void){
 }
 
 void Print_Statistics(void){
+    int i = 0;
     Print_To_Screen("(C)",1,4);
     Print_To_Screen("Mon", 6, 4);
+    Print_Statistics_For(Mon);
     Print_To_Screen("Tue", 10, 4);
     Print_To_Screen("Wed", 14, 4);
     Print_To_Screen("Thu", 18, 4);
@@ -190,8 +192,7 @@ void Print_To_Screen(char text[], int x, int y){
       Write_Data_2_Display(text[i]-0x20);
       Write_Command_2_Display(0xC0);
       i++;
-        
-  
-  }       
-  
+  }  
 }
+
+void
