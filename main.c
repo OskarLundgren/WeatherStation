@@ -44,7 +44,9 @@ int main(){
     
     button = Read_Keypad();
     if(buttonWasPressed == 1){
-    Keypad_Menu_Action(button);
+      buttonWasPressed = 0;
+      Keypad_Menu_Action(button);
+    
     }
   }
   

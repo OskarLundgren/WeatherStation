@@ -163,15 +163,23 @@ void Print_Menu(void){
 }
 
 void Print_Statistics(void){
-  
-    Print_To_Screen("Mon", 1, 4);
-    Print_To_Screen("Tue", 5, 4);
-    Print_To_Screen("Wed", 9, 4);
-    Print_To_Screen("Thu", 13, 4);
-    Print_To_Screen("Fri", 17, 4);
-    Print_To_Screen("Sat", 21, 4);
-    Print_To_Screen("Sun", 25, 4);
-  
+    Print_To_Screen("(C)",1,4);
+    Print_To_Screen("Mon", 6, 4);
+    Print_To_Screen("Tue", 10, 4);
+    Print_To_Screen("Wed", 14, 4);
+    Print_To_Screen("Thu", 18, 4);
+    Print_To_Screen("Fri", 22, 4);
+    Print_To_Screen("Sat", 26, 4);
+    Print_To_Screen("Sun", 30, 4);
+    Print_To_Screen("Min:",1,6);
+    Print_To_Screen("Avg:",1,8);
+    Print_To_Screen("Max:",1,10);
+}
+
+void Print_Navigation_Buttons(void){
+      
+     Print_To_Screen("Press * To Go Back",1,14);
+    
 }
 
 

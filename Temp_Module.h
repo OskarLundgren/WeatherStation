@@ -34,6 +34,8 @@ int Size_Of_TempLog();
 
 void Add_Values(void);
 
+void Reset_TempLog(void);
+
 float Find_Max();
 
 float Find_Min();

@@ -40,8 +40,9 @@ int Read_Keypad(void){
     for(row = 1<<2; row <= 32; row = row<<1){    
       theRow++;
       if((*AT91C_PIOC_PDSR & row) == 0){
-        buttonWasPressed = 1;
+        
       	value = theRow*3 + theCol + 1;
+        buttonWasPressed = 1;
       	break;
       }    
     }  
@@ -62,6 +63,7 @@ void Keypad_Menu_Action(int button){
     Clear_Display();
     Print_Temperature();
     Print_Statistics();
+    Print_Navigation_Buttons();
   
   
   }
