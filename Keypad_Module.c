@@ -1,8 +1,11 @@
 #include "Keypad_Module.h"
 #include "Common_Functions.h"
 #include "Display_Module.h"
+#include "Temp_Module.h"
+#include "Light_Module.h"
 
 int buttonWasPressed;
+int currentMenu = 0;
 
 void Init_Keypad(void){
 
@@ -55,19 +58,41 @@ int Read_Keypad(void){
 
 }
 
-void Keypad_Menu_Action(int button){
+void Keypad_Menu_Action(int *button){
 
-  switch(button){
+  switch(currentMenu){
+
+  case 0:  
+
+    switch(*button){
   
+      case 1:
+          {
+          currentMenu = 1;
+          Clear_Display();
+          Print_Temperature();
+          Print_Statistics();
+          Print_Navigation_Buttons();
+          break;
+      }   
+      case 2:
+        {
+          Find_Light();
+          break;
+        }
+  
+    }
   case 1:
-    Clear_Display();
-    Print_Temperature();
-    Print_Statistics();
-    Print_Navigation_Buttons();
-  
-  
-  }
 
+    switch(*button){
+      case 10:
+        currentMenu = 0;
+        Clear_Display();
+        Print_Menu();
+        Print_Temperature();
+    }
+
+  }
 }
 
 

@@ -7,7 +7,7 @@
 
 char converted[4];
 char floatToChar[6];
-float tempLog[10];
+float tempLog[60];
 Day weekBuffer[7];
 int tempLogPosition = 0;
 float temp;

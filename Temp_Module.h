@@ -4,7 +4,7 @@
 extern float temp;
 extern int oneMinute;
 extern int tempLogPosition;
-extern float tempLog[10];
+extern float tempLog[60];
 extern char converted[4];
 
 

@@ -8,7 +8,6 @@
 #include "Temp_Module.h"
 #include <stdlib.h>
 
-//nu loggar den alla sju dagar pa ett fungerande satt!
 
 int main(){
   SystemInit();
@@ -19,6 +18,9 @@ int main(){
   Temp_Measure();
   Update_Temp();
   Print_Temperature();
+  Light_Init();
+  PWM_Setup();
+  ADC_Setup();
   Setup_Interrupts(1);
   Print_Menu();
 
@@ -45,7 +47,7 @@ int main(){
     button = Read_Keypad();
     if(buttonWasPressed == 1){
       buttonWasPressed = 0;
-      Keypad_Menu_Action(button);
+      Keypad_Menu_Action(&button);
     
     }
   }

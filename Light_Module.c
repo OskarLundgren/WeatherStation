@@ -2,6 +2,7 @@
 #include "Common_Functions.h"
 
 unsigned short Light_Value;
+
 void Light_Init(void){
 
   *AT91C_PMC_PCER = 1<<11;
@@ -48,6 +49,12 @@ void Find_Light(void){
   
   unsigned int Position, Servo;
   
+  Servo = 1400;
+  
+  *PWM_CDTYUPD = Servo;
+  Setup_Interrupts(1000);
+  while(nInterrupts < 400){}
+  
   for(Servo = 1400; Servo < 7000; Servo = Servo + 100){
   
     Current_Light = Light_Measure();
@@ -71,5 +78,8 @@ void Find_Light(void){
   while(nInterrupts < 100){}
   
   *PWM_CDTYUPD = Position;  
+  
+  
+  Setup_Interrupts(1);
   
 }

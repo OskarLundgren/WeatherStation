@@ -7,6 +7,6 @@ void Init_Keypad(void);
 
 int Read_Keypad(void);
 
-void Keypad_Menu_Action(int button);
+void Keypad_Menu_Action(int *button);
 
 #endif
