@@ -5,7 +5,8 @@ extern float temp;
 extern int oneMinute;
 extern int tempLogPosition;
 extern float tempLog[10];
-extern Day weekBuffer[7];
+extern char converted[4];
+
 
 typedef struct day{
   
@@ -15,6 +16,9 @@ typedef struct day{
   
   
 } Day;
+
+extern Day weekBuffer[7];
+
 void Init_Temp(void);
 
 void Temp_Measure(void);
@@ -43,6 +47,6 @@ float Find_Min();
 
 float Find_Average();
 
-char [] Convert_Day_To_Char(Day theDay);
+void Convert_Day_To_Char(Day* theDay, int requestedValue);
 
 #endif

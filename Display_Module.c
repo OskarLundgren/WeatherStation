@@ -163,16 +163,75 @@ void Print_Menu(void){
 }
 
 void Print_Statistics(void){
-    int i = 0;
+    int min = 1;
+    int avg = 2;
+    int max = 3;
+    
     Print_To_Screen("(C)",1,4);
+    
     Print_To_Screen("Mon", 6, 4);
-    Print_Statistics_For(Mon);
-    Print_To_Screen("Tue", 10, 4);
-    Print_To_Screen("Wed", 14, 4);
-    Print_To_Screen("Thu", 18, 4);
-    Print_To_Screen("Fri", 22, 4);
-    Print_To_Screen("Sat", 26, 4);
-    Print_To_Screen("Sun", 30, 4);
+    Convert_Day_To_Char(&weekBuffer[0],min);
+    Print_To_Screen(converted, 6, 6);
+    Convert_Day_To_Char(&weekBuffer[0],avg);            //Prints statistics related to Monday
+    Print_To_Screen(converted, 6, 8);
+    Convert_Day_To_Char(&weekBuffer[0],max);
+    Print_To_Screen(converted, 6, 10);
+    
+    
+    Print_To_Screen("Tue", 11, 4);
+    Convert_Day_To_Char(&weekBuffer[1],min);
+    Print_To_Screen(converted, 11, 6);
+    Convert_Day_To_Char(&weekBuffer[1],avg);            //Prints statistics related to Tuesday
+    Print_To_Screen(converted, 11, 8);
+    Convert_Day_To_Char(&weekBuffer[1],max);
+    Print_To_Screen(converted, 11, 10);
+    
+    
+    Print_To_Screen("Wed", 16, 4);
+    Convert_Day_To_Char(&weekBuffer[2],min);
+    Print_To_Screen(converted, 16, 6);
+    Convert_Day_To_Char(&weekBuffer[2],avg);            //Prints statistics related to Wednesday
+    Print_To_Screen(converted, 16, 8);
+    Convert_Day_To_Char(&weekBuffer[2],max);
+    Print_To_Screen(converted, 16, 10);    
+    
+    
+    Print_To_Screen("Thu", 21, 4);
+    Convert_Day_To_Char(&weekBuffer[3],min);
+    Print_To_Screen(converted, 21, 6);
+    Convert_Day_To_Char(&weekBuffer[3],avg);            //Prints statistics related to Thursday
+    Print_To_Screen(converted, 21, 8);
+    Convert_Day_To_Char(&weekBuffer[3],max);
+    Print_To_Screen(converted, 21, 10);    
+    
+        
+    Print_To_Screen("Fri", 26, 4);
+    Convert_Day_To_Char(&weekBuffer[4],min);
+    Print_To_Screen(converted, 26, 6);
+    Convert_Day_To_Char(&weekBuffer[4],avg);            //Prints statistics related to Friday
+    Print_To_Screen(converted, 26, 8);
+    Convert_Day_To_Char(&weekBuffer[4],max);
+    Print_To_Screen(converted, 26, 10);      
+    
+    
+    Print_To_Screen("Sat", 31, 4);
+    Convert_Day_To_Char(&weekBuffer[5],min);
+    Print_To_Screen(converted, 31, 6);
+    Convert_Day_To_Char(&weekBuffer[5],avg);            //Prints statistics related to Saturday
+    Print_To_Screen(converted, 31, 8);
+    Convert_Day_To_Char(&weekBuffer[5],max);
+    Print_To_Screen(converted, 31, 10);   
+ 
+       
+    Print_To_Screen("Sun", 36, 4);
+    Convert_Day_To_Char(&weekBuffer[6],min);
+    Print_To_Screen(converted, 36, 6);
+    Convert_Day_To_Char(&weekBuffer[6],avg);            //Prints statistics related to Sunday
+    Print_To_Screen(converted, 36, 8);
+    Convert_Day_To_Char(&weekBuffer[6],max);
+    Print_To_Screen(converted, 36, 10); 
+    
+       
     Print_To_Screen("Min:",1,6);
     Print_To_Screen("Avg:",1,8);
     Print_To_Screen("Max:",1,10);
@@ -194,5 +253,3 @@ void Print_To_Screen(char text[], int x, int y){
       i++;
   }  
 }
-
-void

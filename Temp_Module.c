@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+char converted[4];
 char floatToChar[6];
 float tempLog[10];
 Day weekBuffer[7];
@@ -202,5 +202,26 @@ float Find_Average(){
   
   avgTemp = calculateTemp/(sizeof(tempLog)/4);
   return avgTemp;
+}
+
+
+void Convert_Day_To_Char(Day* theDay, int requestedValue){
+    
+    
+    switch(requestedValue){
+    
+    case 1:
+      sprintf(converted,"%2.1f",theDay->minValue);
+      break;
+      
+    case 2:
+      sprintf(converted,"%2.1f",theDay->avgValue);
+      break;
+      
+    case 3:
+      sprintf(converted,"%2.1f",theDay->maxValue);
+      break;
+    }
+
 }
 
