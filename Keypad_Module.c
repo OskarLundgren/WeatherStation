@@ -13,6 +13,13 @@ int enteredNumber = 0;
 int enteredDot = 0;
 int isNegative = 0;
 int dotPosition;
+int justHigher = 0;
+int justLower = 0;
+int both = 0;
+double digitValue = 1;
+float lowerLimit;
+float higherLimit;
+float limitValue = 0;
 
 
 
@@ -56,7 +63,7 @@ int Read_Keypad(void){
         buttonWasPressed = 1;
         break;
       }
-      delay(50);
+      delay(100);
     }  
   }
 
@@ -95,7 +102,7 @@ void Keypad_Menu_Action(int *button){
           Clear_Display();
           Print_Temperature();
           Print_Menu_Attributes();
-          while(Read_Keypad() == 3){}
+          while(Read_Keypad() != 0){}
             break;
         }
 
@@ -117,10 +124,62 @@ void Keypad_Menu_Action(int *button){
       }
       break;
     }
+    
+    
+  case 3:
+    {
+      
+      switch(*button){
+        
+      case 1:
+        {
+        currentMenu = 31;
+        justLower = 1;
+        Clear_Display();
+        Print_Menu_Attributes();
+        Print_Temperature();
+        while(Read_Keypad() != 0){}
+        break;
+        }
+      case 2:
+        {
+        currentMenu = 31;
+        justHigher = 1;
+        Clear_Display();
+        Print_Menu_Attributes();
+        Print_Temperature();
+        while(Read_Keypad() != 0){} 
+        break;
+        }
+      case 3:
+        {
+        currentMenu = 31;
+        both = 1;
+        justLower = 1;
+        Clear_Display();
+        Print_Menu_Attributes();
+        Print_Temperature();
+        while(Read_Keypad() != 0){}
+        break;
+        }
+      case 10:
+        {
+        currentMenu = 0;
+        Clear_Display();
+        Print_Menu_Attributes();
+        Print_Temperature();
+        break;
+        }
+      
+      }
+    
+    
+    break;
+    }
 
 
 
-    case 3:
+    case 31:
     {
 
       switch(Read_Keypad()){
@@ -129,12 +188,27 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("0",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 0;
+        }
+        else{
+          limitValue = limitValue + (0*digitValue);
+          digitValue = digitValue * 0.1;
+        }
+        
         while(Read_Keypad() == 11){}
           break;
 
         case 1:
         Print_To_Screen("1",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 1;
+        }
+        else{
+          limitValue = limitValue + (1*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 1){}
           break;
 
@@ -142,6 +216,13 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("2",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 2;
+        }
+        else{
+          limitValue = limitValue + (2*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 2){}
           break;
 
@@ -149,12 +230,27 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("3",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 3;
+        }
+        else{
+          limitValue = limitValue + (3*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 3){}
           break;
 
         case 4:
 
         Print_To_Screen("4",x++,7);
+        enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 4;
+        }
+        else{
+          limitValue = limitValue + (4*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 4){}
           break;
 
@@ -162,6 +258,13 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("5",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 5;
+        }
+        else{
+          limitValue = limitValue + (5*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 5){}
           break;
 
@@ -170,6 +273,13 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("6",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 6;
+        }
+        else{
+          limitValue = limitValue + (6*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 6){}
           break;     
 
@@ -178,6 +288,13 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("7",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 7;
+        }
+        else{
+          limitValue = limitValue + (7*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 7){}
           break;
 
@@ -186,6 +303,13 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("8",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 8;
+        }
+        else{
+          limitValue = limitValue + (8*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 8){}
           break;
 
@@ -193,6 +317,13 @@ void Keypad_Menu_Action(int *button){
 
         Print_To_Screen("9",x++,7);
         enteredNumber = 1;
+        if(digitValue == 1.0){
+        limitValue = (limitValue*10) + 9;
+        }
+        else{
+          limitValue = limitValue + (9*digitValue);
+          digitValue = digitValue * 0.1;
+        }
         while(Read_Keypad() == 9){}
           break;
 
@@ -210,7 +341,7 @@ void Keypad_Menu_Action(int *button){
 
               while(Read_Keypad() == 10){}
               Setup_Interrupts(1);
-                break;
+              break;
             }
 
           }
@@ -234,25 +365,64 @@ void Keypad_Menu_Action(int *button){
             }
           }
           while(Read_Keypad() == 10){}
+          break;
         }
         
         
       case 12:
-        if(enteredNumber == 1 && enteredDot != 1){
+        if(enteredNumber == 1){
           Setup_Interrupts(10);
           while(Read_Keypad() == 12){
           
-            if(nInterrupts == 7){
+            if(nInterrupts == 7 && enteredDot != 1){
               dotPosition = x;
               Print_To_Screen(".",x++,7);
               enteredDot = 1;
+              digitValue = 0.1;
               while(Read_Keypad() == 12){}
-              Setup_Interrupts(1);
+              
               break;
             }
+
+            }
+           if(nInterrupts < 7){
+              currentMenu = 32;
+              Clear_Display();
+              
+              if(justLower == 1){
+                lowerLimit = limitValue;
+                limitValue = 0;
+                x = 2;
+                enteredDot = 0;
+                isNegative = 0;
+                enteredNumber = 0;
+                digitValue = 1;
+                justLower = 0;
+              }
+              if(justHigher == 1){
+                higherLimit = limitValue;
+                limitValue = 0;
+                x = 2;
+                enteredDot = 0;
+                isNegative = 0;
+                enteredNumber = 0;
+                digitValue = 1;
+              }
+              if(both == 1 && justHigher != 1){
+                justLower = 0;
+                justHigher = 1;
+                currentMenu = 31;
+                x = 2;
+              }
+              
+              Print_Menu_Attributes();
+              while(Read_Keypad() == 12){}
           }
-          
+          Setup_Interrupts(1);
+          break;
         }
+        
+        
         
     }
     
@@ -266,6 +436,51 @@ void Keypad_Menu_Action(int *button){
         Print_To_Screen("              ",25,12);
       }
     }
+    
+    
+    case 32:
+      {
+        switch(Read_Keypad()){
+        
+        case 10:
+          if(both == 1){
+            justLower = 0;
+            justHigher = 0;
+          }
+          currentMenu = 31;
+          Clear_Display();
+          limitValue = 0;
+          x = 2;
+          enteredDot = 0;
+          isNegative = 0;
+          enteredNumber = 0;
+          digitValue = 1;
+          lowerLimit = 0;
+          higherLimit = 0;
+          Print_Menu_Attributes();
+          break;
+          
+        case 12:
+          currentMenu = 33;
+          Clear_Display();
+          Print_Menu_Attributes();
+          limitValue = 0;
+          x = 2;
+          enteredDot = 0;
+          isNegative = 0;
+          enteredNumber = 0;
+          digitValue = 1;
+          Setup_Interrupts(1000);
+          while(nInterrupts < 1000){}
+          Clear_Display();
+          currentMenu = 0;
+          Setup_Interrupts(1);
+          Print_Menu_Attributes();
+          break;
+        
+        }
+      } 
+      
   }
 
 }

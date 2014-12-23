@@ -8,6 +8,9 @@ extern int nInterrupts;
 extern int enteredNumber;
 extern int isNegative;
 extern int enteredDot;
+extern int justLower;
+extern int justHigher;
+extern int both;
 
 void Init_Keypad(void);
 

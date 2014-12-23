@@ -241,15 +241,32 @@ void Print_Statistics(void){
 void Print_Menu_Attributes(void){
   
   switch(currentMenu){
-      
+    
+    case 0:
+      Print_Menu();
+      break;
     
     case 1:
       Print_To_Screen("Press * To Go Back",1,14);
       break;
-
+      
     case 3:
-      Print_To_Screen("Please Enter Lower Temperature:", 1,4);
-      //Print_To_Screen("[      ]", 1, 7);
+       Print_To_Screen("What would you like to set a alarm for?",1,4);
+       Print_To_Screen("1 - Lower Temperature",1,6);
+       Print_To_Screen("2 - Higher Temperature",1,8);
+       Print_To_Screen("3 - Both Higher and Lower Temperature",1,10);
+       Print_To_Screen("Press * To Go Back",1,14);
+       break;
+
+    case 31:
+      
+      if(justLower == 1 || both == 1){
+        Print_To_Screen("Please Enter Lower Temperature:", 1,4);
+      }
+      if(justHigher == 1){
+        Print_To_Screen("Please Enter Higher Temperature:",1,4);
+      }
+      
       if(isNegative != 1){
       Print_To_Screen("Hold * for (-)",1,12);
       }
@@ -257,8 +274,23 @@ void Print_Menu_Attributes(void){
       Print_To_Screen("Hold # for (.)",25,12);
       }
       Print_To_Screen("* = Delete", 1, 14);
+      if(enteredNumber != 0){
+      Print_To_Screen("          ",28,14);
       Print_To_Screen("# = Confirm", 28, 14);
+      }
+      else{
+      Print_To_Screen("# = Cancel",28,14);
+      }
       break;
+      
+  case 32:
+    Print_To_Screen("Save Changes?",13,5);
+    Print_To_Screen("* = No",8,9);
+    Print_To_Screen("# = Yes",25,9);
+    break;
+  case 33:
+    Print_To_Screen("Save Succesful",12,5);
+    break;
   }
 }
 
