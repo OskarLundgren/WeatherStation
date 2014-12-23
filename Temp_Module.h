@@ -6,6 +6,7 @@ extern int oneMinute;
 extern int tempLogPosition;
 extern float tempLog[60];
 extern char converted[4];
+extern int currentMenu;
 
 
 typedef struct day{

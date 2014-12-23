@@ -3,6 +3,7 @@
 #include "Display_Module.h"
 #include "Common_Functions.h"
 #include "Temp_Module.h"
+#include "Keypad_Module.h"
 
 void Clear_Display(){
 
@@ -237,10 +238,28 @@ void Print_Statistics(void){
     Print_To_Screen("Max:",1,10);
 }
 
-void Print_Navigation_Buttons(void){
+void Print_Menu_Attributes(void){
+  
+  switch(currentMenu){
       
-     Print_To_Screen("Press * To Go Back",1,14);
     
+    case 1:
+      Print_To_Screen("Press * To Go Back",1,14);
+      break;
+
+    case 3:
+      Print_To_Screen("Please Enter Lower Temperature:", 1,4);
+      //Print_To_Screen("[      ]", 1, 7);
+      if(isNegative != 1){
+      Print_To_Screen("Hold * for (-)",1,12);
+      }
+      if(enteredNumber != 0 && enteredDot != 1){
+      Print_To_Screen("Hold # for (.)",25,12);
+      }
+      Print_To_Screen("* = Delete", 1, 14);
+      Print_To_Screen("# = Confirm", 28, 14);
+      break;
+  }
 }
 
 
