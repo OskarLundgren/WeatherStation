@@ -96,6 +96,7 @@ void Keypad_Menu_Action(int *button){
         case 2:
         {
           Find_Light();
+          while(Read_Keypad() == 2){}
           break;
         }
         case 3:
