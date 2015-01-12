@@ -17,9 +17,11 @@ int justHigher = 0;
 int justLower = 0;
 int both = 0;
 double digitValue = 1;
-float lowerLimit;
-float higherLimit;
+float lowerLimit = -45;
+float higherLimit = 100;
 float limitValue = 0;
+int alarmSet = 0;
+int fastModeActivated = 0;
 
 
 
@@ -63,7 +65,7 @@ int Read_Keypad(void){
         buttonWasPressed = 1;
         break;
       }
-      delay(100);
+      delay(300);
     }  
   }
 
@@ -105,20 +107,57 @@ void Keypad_Menu_Action(int *button){
           while(Read_Keypad() != 0){}
             break;
         }
+        
+      case 4:
+        {
+        currentMenu = 4;
+        Clear_Display();
+        Print_Temperature();
+        Print_Menu_Attributes();
+        while(Read_Keypad() == 4){}
+        break;
+        }
 
+     
+    case 10:
+      
+      
+      if(fastModeActivated){
+        Setup_Interrupts(1000);
+      while(Read_Keypad() == 10){
+      
+        if(nInterrupts == 700){
+           *AT91C_TC3_CCR = AT91C_TC_SWTRG;
+           *AT91C_TC3_RC = normalMode;
+           nSample = 1440;
+           currentMenu = 0;
+           fastModeActivated = 0;
+           
+           Clear_Display();
+           Setup_Interrupts(1);
+           Print_Menu_Attributes();
+           Print_Temperature();
+           
+          }
+        }
       }
+      
       break;
+    }
     }
 
 
     case 1:
     {
+      
+      
+      
       switch(*button){
 
         case 10:
         currentMenu = 0;
         Clear_Display();
-        Print_Menu();
+        Print_Menu_Attributes();
         Print_Temperature();
         break;
       }
@@ -170,12 +209,87 @@ void Keypad_Menu_Action(int *button){
         Print_Temperature();
         break;
         }
+        
+      case 4:
+        {
+        currentMenu = 34;
+        Clear_Display();
+        alarmSet = 0;
+        lowerLimit = -45;
+        higherLimit = 100;
+        Setup_Interrupts(1000);
+        Print_Menu_Attributes();
+        while(nInterrupts < 1000){}
+        Clear_Display();
+        currentMenu = 0;
+        Print_Menu_Attributes();
+        Print_Temperature();
+        Setup_Interrupts(1);
+
+        break;
+        
+        }
       
       }
     
     
     break;
     }
+    
+    case 4:
+
+        switch(*button){
+        
+      case 1:
+        *AT91C_TC3_CCR = AT91C_TC_SWTRG;
+        *AT91C_TC3_RC = fastMode;
+        nSample = 1440;
+        fastModeActivated = 1;
+        currentMenu = 41;
+        Setup_Interrupts(1000);
+        Clear_Display();
+        Print_Menu_Attributes();
+        while(nInterrupts < 1000){}
+        Clear_Display();
+        currentMenu = 0;
+        Print_Menu_Attributes();
+        Print_Temperature();
+        Setup_Interrupts(1);
+        break;
+        
+        
+      case 2:
+        *AT91C_TC3_CCR = AT91C_TC_SWTRG;
+        *AT91C_TC3_RC = fastMode;
+        nSample = 60;
+        fastModeActivated = 1;
+        currentMenu = 41;
+        currentMenu = 41;
+        Setup_Interrupts(1000);
+        Clear_Display();
+        Print_Menu_Attributes();
+        while(nInterrupts < 1000){}
+        Clear_Display();
+        currentMenu = 0;
+        Print_Menu_Attributes();
+        Print_Temperature();
+        Setup_Interrupts(1);
+        break;
+        
+        
+             
+      
+      case 10:
+        currentMenu = 0;
+        Clear_Display();
+        Print_Temperature();
+        Print_Menu_Attributes();
+        Setup_Interrupts(1);
+        break;
+     
+      
+      break;
+        }
 
 
 
@@ -372,6 +486,7 @@ void Keypad_Menu_Action(int *button){
       case 12:
         if(enteredNumber == 1){
           Setup_Interrupts(10);
+          alarmSet = 1;
           while(Read_Keypad() == 12){
           
             if(nInterrupts == 7 && enteredDot != 1){
@@ -391,6 +506,9 @@ void Keypad_Menu_Action(int *button){
               
               if(justLower == 1){
                 lowerLimit = limitValue;
+                if(isNegative == 1){
+                  lowerLimit = 0 - lowerLimit;
+                }
                 limitValue = 0;
                 x = 2;
                 enteredDot = 0;
@@ -401,6 +519,9 @@ void Keypad_Menu_Action(int *button){
               }
               if(justHigher == 1){
                 higherLimit = limitValue;
+                if(isNegative == 1){
+                  higherLimit = 0 - higherLimit;
+                }
                 limitValue = 0;
                 x = 2;
                 enteredDot = 0;
@@ -446,6 +567,7 @@ void Keypad_Menu_Action(int *button){
           if(both == 1){
             justLower = 0;
             justHigher = 0;
+            both = 0;
           }
           currentMenu = 31;
           Clear_Display();
@@ -458,9 +580,15 @@ void Keypad_Menu_Action(int *button){
           lowerLimit = 0;
           higherLimit = 0;
           Print_Menu_Attributes();
+          if(alarmSet != 1){
+          alarmSet = 0;
+          }
           break;
           
         case 12:
+          justLower = 0;
+          justHigher = 0;
+          both = 0;
           currentMenu = 33;
           Clear_Display();
           Print_Menu_Attributes();

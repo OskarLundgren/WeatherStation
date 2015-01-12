@@ -7,13 +7,14 @@
 
 char converted[4];
 char floatToChar[6];
-float tempLog[60];
+float tempLog[1440];
 Day weekBuffer[7];
 int tempLogPosition = 0;
 float temp;
 int oneMinute = 0;
 int lastDayInBuffer = 0;
 int firstDayInBuffer = -1;
+int nSample = 1440;
 Day newDay;
 
 Day New_Day(float min, float max, float avg){
@@ -52,7 +53,7 @@ void Timer_Setup(void){
   
   *AT91C_TC3_CMR = AT91C_TC_CLKS_TIMER_DIV1_CLOCK|AT91C_TC_WAVESEL_UP_AUTO;
   *AT91C_TC3_CCR = AT91C_TC_SWTRG|AT91C_TC_CLKEN;
-  *AT91C_TC3_RC = fastMode;
+  *AT91C_TC3_RC = normalMode;
   *AT91C_TC3_IER = AT91C_TC_CPCS;
   
   NVIC_ClearPendingIRQ(TC3_IRQn);
@@ -103,6 +104,18 @@ void Update_Temp(void){
 
 }
 
+void Temp_Alarm(void){
+  int addressPointer = 0;
+  setADP(addressPointer,1);
+  
+  while(addressPointer < 40){
+  
+    Write_Data_2_Display(0x00);
+    Write_Command_2_Display(0xC0);
+    addressPointer++;
+  }
+}
+
 void Print_Temperature(void){
   int count;
   char character;
@@ -121,7 +134,7 @@ void Print_Temperature(void){
 }
 
 void Log_Temp(void){
-    tempLog[tempLogPosition++] = temp; 
+    tempLog[tempLogPosition++] = temp;
 }
 
 int Size_Of_TempLog(){
@@ -150,8 +163,9 @@ void Add_Values(void){
   
   newDay = New_Day(minValue,maxValue,avgValue);
   weekBuffer[lastDayInBuffer++] = newDay;
-  firstDayInBuffer++;
-  
+  if(lastDayInBuffer == 7){
+    lastDayInBuffer = 0;
+  }
 }
 
 
@@ -161,7 +175,7 @@ float Find_Max(){
   float thisTemp;
   maxTemp = -272;
   int i;
-  for(i = 0; i < sizeof(tempLog)/4; i++){
+  for(i = 0; i < nSample; i++){
     
     thisTemp = tempLog[i];
     if(thisTemp > maxTemp){
@@ -179,7 +193,7 @@ float Find_Min(){
   float thisTemp;
   minTemp = 150;
   int i;
-  for(i = 0; i < sizeof(tempLog)/4; i++){
+  for(i = 0; i < nSample; i++){
     thisTemp = tempLog[i];
     if(thisTemp < minTemp){
       minTemp = thisTemp;
@@ -195,12 +209,12 @@ float Find_Average(){
   float calculateTemp;
   calculateTemp = 0;
   int i;
-  for(i = 0; i < sizeof(tempLog)/4; i++){
+  for(i = 0; i < nSample; i++){
   
     calculateTemp = calculateTemp + tempLog[i];
   }
   
-  avgTemp = calculateTemp/(sizeof(tempLog)/4);
+  avgTemp = calculateTemp/nSample;
   return avgTemp;
 }
 

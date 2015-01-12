@@ -9,6 +9,7 @@
 #include <stdlib.h>
 
 
+
 int main(){
   SystemInit();
   Init_Display();
@@ -25,23 +26,38 @@ int main(){
   Print_Menu();
 
   int button;
-  int logTempSize;
-  logTempSize = Size_Of_TempLog();
-  while(1){      
+  int alarmActive = 0;
+  
+  while(1){
+
+    
     if(nInterrupts == 1){
+      alarmActive ^= 1;
       Temp_Measure();
       Update_Temp();
       Print_Temperature();
+      if(alarmSet && alarmActive%2==0 && (lowerLimit > temp || higherLimit < temp)){
+        Temp_Alarm();        
+      }
+      
       Setup_Interrupts(1);
+      
+      
     }
+    
     if(oneMinute == 1){
-    Log_Temp();
-    oneMinute = 0;
+      Log_Temp();
+      oneMinute = 0;
     }
-    if(tempLogPosition == logTempSize){
-     Add_Values();
+    
+    if(tempLogPosition == nSample){
+      Add_Values();
       tempLogPosition = 0;
+      
       Reset_TempLog();
+      if(currentMenu == 1){
+      Print_Statistics();
+      }
     }
     
     button = Read_Keypad();
@@ -50,7 +66,11 @@ int main(){
       Keypad_Menu_Action(&button);
     
     }
-  }
+    
+
+      
+    }
+
   
   return 0;
 }

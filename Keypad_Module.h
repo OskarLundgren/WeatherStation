@@ -11,6 +11,10 @@ extern int enteredDot;
 extern int justLower;
 extern int justHigher;
 extern int both;
+extern float lowerLimit;
+extern float higherLimit;
+extern int alarmSet;
+extern int fastModeActivated;
 
 void Init_Keypad(void);
 

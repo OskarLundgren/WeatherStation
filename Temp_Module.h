@@ -4,9 +4,10 @@
 extern float temp;
 extern int oneMinute;
 extern int tempLogPosition;
-extern float tempLog[60];
+extern float tempLog[1440];
 extern char converted[4];
 extern int currentMenu;
+extern int nSample;
 
 
 typedef struct day{
@@ -27,6 +28,8 @@ void Temp_Measure(void);
 void TC0_Handler(void);
 
 void Update_Temp(void);
+
+void Clear_Temp(void);
 
 void Print_Temperature(void);
 
@@ -49,5 +52,7 @@ float Find_Min();
 float Find_Average();
 
 void Convert_Day_To_Char(Day* theDay, int requestedValue);
+
+void Temp_Alarm(void);
 
 #endif

@@ -158,6 +158,10 @@ void Print_Menu(void){
    Print_To_Screen("2 - Find the orientation of the sun",1,6);
    Print_To_Screen("3 - Set a alarm for upper/lower temp",1,8);
    Print_To_Screen("4 - Enter fastmode (for simulation)",1,10);
+   if(fastModeActivated == 1){
+     Print_To_Screen("Hold * To Exit Fastmode",1,14);
+   
+   }
    
       
 
@@ -255,8 +259,15 @@ void Print_Menu_Attributes(void){
        Print_To_Screen("1 - Lower Temperature",1,6);
        Print_To_Screen("2 - Higher Temperature",1,8);
        Print_To_Screen("3 - Both Higher and Lower Temperature",1,10);
+       Print_To_Screen("4 - Delete Current Alarm",1,12);
        Print_To_Screen("Press * To Go Back",1,14);
        break;
+       
+    case 4:
+        Print_To_Screen("Press 1 - Simulate A Day In 24 Minutes",1,4);
+        Print_To_Screen("Press 2 - Simulate A Day In 60 Seconds",1,6);
+        Print_To_Screen("Press * To Go Back",1,14);
+        break;
 
     case 31:
       
@@ -291,7 +302,16 @@ void Print_Menu_Attributes(void){
   case 33:
     Print_To_Screen("Save Succesful",12,5);
     break;
+    
+  case 34:
+    Print_To_Screen("Alarm Deleted",12,5);
+    break;
+    
+  case 41:
+     Print_To_Screen("Fastmode Entered",12,5);
   }
+  
+
 }
 
 
