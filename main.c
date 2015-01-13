@@ -6,6 +6,7 @@
 #include "Keypad_Module.h"
 #include "Light_Module.h"
 #include "Temp_Module.h"
+#include "I2C_Module.h"
 #include <stdlib.h>
 
 
@@ -24,7 +25,13 @@ int main(){
   ADC_Setup();
   Setup_Interrupts(1);
   Print_Menu();
-
+  Init_I2C();
+  unsigned int testValue;
+  
+  
+  testValue = Read_Pressure();
+  
+  
   int button;
   int alarmActive = 0;
   

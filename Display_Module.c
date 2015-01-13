@@ -158,6 +158,7 @@ void Print_Menu(void){
    Print_To_Screen("2 - Find the orientation of the sun",1,6);
    Print_To_Screen("3 - Set a alarm for upper/lower temp",1,8);
    Print_To_Screen("4 - Enter fastmode (for simulation)",1,10);
+   Print_To_Screen("5 - Number of samples/minute of temp",1,12);
    if(fastModeActivated == 1){
      Print_To_Screen("Hold * To Exit Fastmode",1,14);
    
