@@ -3,7 +3,7 @@
 
 
 void Init_I2C(void){
-  /*Here we enable the clock for the Two-Wired Interface (TWI). We also let the TWI control PA18 and PA19*/
+  /*Here we enable the clock for the Two-Wired Interface (TWI). We also let the TWI control PA17 and PA18*/
 
   *AT91C_PMC_PCER = 1<<22|1<<11; 
   *AT91C_PIOA_PDR = 1<<17|1<<18;
