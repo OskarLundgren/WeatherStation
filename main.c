@@ -18,20 +18,16 @@ int main(){
   Init_Keypad();
   Timer_Setup();
   Temp_Measure();
+  Timer_Delay_Setup();
   Update_Temp();
-  Print_Temperature();
   Light_Init();
   PWM_Setup();
-  ADC_Setup();
-  Setup_Interrupts(1);
+  ADC_Setup();  
+  Startup_Screen();
   Print_Menu();
-  Init_I2C();
-  unsigned int testValue;
-  
-  
-  testValue = Read_Pressure();
-  
-  
+  Print_Temperature();
+  Setup_Interrupts(1);
+  Init_I2C();  
   int button;
   int alarmActive = 0;
   

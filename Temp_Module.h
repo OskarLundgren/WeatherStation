@@ -8,7 +8,7 @@ extern float tempLog[1440];
 extern char converted[4];
 extern int currentMenu;
 extern int nSample;
-
+extern int Minute_Sample_Value;
 
 typedef struct day{
   

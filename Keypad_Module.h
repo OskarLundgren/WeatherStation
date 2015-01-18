@@ -15,6 +15,13 @@ extern float lowerLimit;
 extern float higherLimit;
 extern int alarmSet;
 extern int fastModeActivated;
+extern int Sample_Value;
+
+void Timer_Delay_Setup(void);
+
+void Start_Timer_Delay(int Interrupts_Per_Second);
+
+void Stop_Timer_Delay(void);
 
 void Init_Keypad(void);
 

@@ -15,6 +15,8 @@ void Init_Display(void);
 
 void setADP(int x,int y);
 
+void Startup_Screen(void);
+
 void Print_Menu(void);
 
 void Print_Statistics(void);

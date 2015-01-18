@@ -16,14 +16,49 @@ int dotPosition;
 int justHigher = 0;
 int justLower = 0;
 int both = 0;
+int Sample_Value = -1;
 double digitValue = 1;
 float lowerLimit = -45;
 float higherLimit = 100;
 float limitValue = 0;
 int alarmSet = 0;
 int fastModeActivated = 0;
+int Timer_Interrupts;
 
+void Timer_Delay_Setup(void){
+  *AT91C_PMC_PCER = 1<<31; //Enables the clock for TC4;
+  
+  *AT91C_TC4_CMR = AT91C_TC_CLKS_TIMER_DIV1_CLOCK|AT91C_TC_WAVESEL_UP_AUTO;
+  *AT91C_TC4_CCR = AT91C_TC_SWTRG;
+  
+  NVIC_ClearPendingIRQ(TC4_IRQn);
+  NVIC_SetPriority(TC4_IRQn,1);
+  NVIC_EnableIRQ(TC4_IRQn);
+  
 
+}
+
+void Start_Timer_Delay(int Interrupts_Per_Second){
+     int value;
+     value = (48000000/Interrupts_Per_Second)-1;
+     Timer_Interrupts = 0;
+     *AT91C_TC4_RC = value;
+     *AT91C_TC4_CCR = AT91C_TC_SWTRG|AT91C_TC_CLKEN;
+     *AT91C_TC4_IER = AT91C_TC_CPCS;
+
+}
+
+void Stop_Timer_Delay(void){
+    *AT91C_TC4_CCR = AT91C_TC_CLKDIS;
+    *AT91C_TC4_IDR = AT91C_TC_CPCS;
+  
+}
+
+void TC4_Handler(void){
+  int x = *AT91C_TC4_SR;
+  Timer_Interrupts++;
+  
+}
 
 void Init_Keypad(void){
 
@@ -56,7 +91,9 @@ int Read_Keypad(void){
     *AT91C_PIOC_CODR = col;
     theCol++;
     theRow = -1;
-
+      Start_Timer_Delay(1000000);
+      while(Timer_Interrupts < 10){}
+      Stop_Timer_Delay();
     for(row = 1<<2; row <= 32; row = row<<1){    
       theRow++;
       if((*AT91C_PIOC_PDSR & row) == 0){
@@ -64,8 +101,8 @@ int Read_Keypad(void){
         value = theRow*3 + theCol + 1;
         buttonWasPressed = 1;
         break;
+
       }
-      delay(300);
     }  
   }
 
@@ -91,6 +128,7 @@ void Keypad_Menu_Action(int *button){
           Print_Temperature();
           Print_Statistics();
           Print_Menu_Attributes();
+          while(Read_Keypad()==1){}
           break;
         }   
         case 2:
@@ -105,7 +143,7 @@ void Keypad_Menu_Action(int *button){
           Clear_Display();
           Print_Temperature();
           Print_Menu_Attributes();
-          while(Read_Keypad() != 0){}
+          while(Read_Keypad() == 3){}
             break;
         }
         
@@ -118,12 +156,23 @@ void Keypad_Menu_Action(int *button){
         while(Read_Keypad() == 4){}
         break;
         }
+        
+      case 5:
+        currentMenu = 5;
+        Clear_Display();
+        Print_Temperature();
+        Print_Menu_Attributes();
+        while(Read_Keypad() == 5){}
+        break;
 
      
     case 10:
       
       
-      if(fastModeActivated){
+      if(!fastModeActivated){
+        while(Read_Keypad() == 10){}
+        break;
+      }
         Setup_Interrupts(1000);
       while(Read_Keypad() == 10){
       
@@ -138,10 +187,9 @@ void Keypad_Menu_Action(int *button){
            Setup_Interrupts(1);
            Print_Menu_Attributes();
            Print_Temperature();
-           
+           while(Read_Keypad() == 10){}
           }
         }
-      }
       
       break;
     }
@@ -167,9 +215,9 @@ void Keypad_Menu_Action(int *button){
     
     
   case 3:
+    
     {
-      
-      switch(*button){
+      switch(Read_Keypad()){
         
       case 1:
         {
@@ -178,7 +226,7 @@ void Keypad_Menu_Action(int *button){
         Clear_Display();
         Print_Menu_Attributes();
         Print_Temperature();
-        while(Read_Keypad() != 0){}
+        while(Read_Keypad() == 1){}
         break;
         }
       case 2:
@@ -188,7 +236,7 @@ void Keypad_Menu_Action(int *button){
         Clear_Display();
         Print_Menu_Attributes();
         Print_Temperature();
-        while(Read_Keypad() != 0){} 
+        while(Read_Keypad() == 2){} 
         break;
         }
       case 3:
@@ -226,6 +274,7 @@ void Keypad_Menu_Action(int *button){
         Print_Menu_Attributes();
         Print_Temperature();
         Setup_Interrupts(1);
+        while(Read_Keypad() == 4){}
 
         break;
         
@@ -283,21 +332,145 @@ void Keypad_Menu_Action(int *button){
       case 10:
         currentMenu = 0;
         Clear_Display();
+        
         Print_Temperature();
         Print_Menu_Attributes();
+        
         Setup_Interrupts(1);
-        break;
+        
+        while(Read_Keypad() == 10){}
      
       
       break;
         }
+        break;
+        
+        
+    case 5:
+      {
+        switch(Read_Keypad()){
+          
+        case 1:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("1",1,8);
+          Sample_Value = 1;
+          
+          break;
+          
+        case 2:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("2",1,8);
+          Sample_Value = 2;
+          break;
+          
+        case 3:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("3",1,8);
+          Sample_Value = 3;
+          break;
+          
+        case 4:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("4",1,8);
+          Sample_Value = 4;
+          break;
+          
+        case 5:
+         if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("5",1,8);
+          Sample_Value = 5;
+          break;
+          
+        case 6:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("6",1,8);
+          Sample_Value = 6;
+          break;
+          
+        case 7:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("7",1,8);
+          Sample_Value = 7;
+          break;
+          
+        case 8:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("8",1,8);
+          Sample_Value = 8;
+          break;
+          
+        case 9:
+          if(Sample_Value == 10){
+            Print_To_Screen(" ",2,8);
+          }
+          Print_To_Screen("9",1,8);
+          Sample_Value = 9;
+          break;
+          
+        case 10:
+          currentMenu = 0;
+          Clear_Display();
+          Print_Temperature();
+          Print_Menu_Attributes();
+          while(Read_Keypad() == 10){}
+          break;
+          
+        case 11:
+          if(Sample_Value == 1){
+            Print_To_Screen("0",2,8);
+            Sample_Value = 10;
+          }          
+          break;
+         
+        
+        case 12:
+          if(Sample_Value != -1){
+            Minute_Sample_Value = Sample_Value;
+            
+          }
+          currentMenu = 51;
+          Clear_Display();
+          Print_Menu_Attributes();
+          Setup_Interrupts(1000);
+          while(nInterrupts < 1000){}
+          Setup_Interrupts(1);
+          currentMenu = 0;
+          Clear_Display();
+          Print_Menu_Attributes();
+          Print_Temperature();
+          while(Read_Keypad() == 12){}
+          
+          break;
+        
+        
+        
+        }
+      Print_Menu_Attributes();
+      break;
+      }
 
 
 
     case 31:
     {
 
-      switch(Read_Keypad()){
+      switch(*button){
 
         case 11:  
 
@@ -455,7 +628,6 @@ void Keypad_Menu_Action(int *button){
               Print_Menu_Attributes();
 
               while(Read_Keypad() == 10){}
-              Setup_Interrupts(1);
               break;
             }
 
@@ -603,14 +775,17 @@ void Keypad_Menu_Action(int *button){
           while(nInterrupts < 1000){}
           Clear_Display();
           currentMenu = 0;
-          Setup_Interrupts(1);
+          
           Print_Menu_Attributes();
+          Print_Temperature();
           break;
         
         }
-      } 
+      }
+      
       
   }
+  Setup_Interrupts(1);
 
 }
 

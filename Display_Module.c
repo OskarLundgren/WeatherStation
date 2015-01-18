@@ -152,6 +152,17 @@ void setADP(int x,int y){
 
 }
 
+void Startup_Screen(void){
+  Print_To_Screen("Welcome",16,5);
+  Setup_Interrupts(1000);
+  while(nInterrupts < 1000){}
+  Print_To_Screen("Initializing Modules",10,7);
+  
+  while(nInterrupts < 3000){}
+  Clear_Display();
+
+}
+
 void Print_Menu(void){
 
    Print_To_Screen("1 - Statistics for the last 7 days",1,4);
@@ -269,7 +280,25 @@ void Print_Menu_Attributes(void){
         Print_To_Screen("Press 2 - Simulate A Day In 60 Seconds",1,6);
         Print_To_Screen("Press * To Go Back",1,14);
         break;
-
+        
+        
+    case 5:
+      Print_To_Screen("Enter the number of samples/minute:",1,4);
+      Print_To_Screen("(1-10)",1,6);
+      Print_To_Screen("Press * To Go Back",1,14);
+      if(Sample_Value != -1){
+        Print_To_Screen("# = Confirm",28,14);
+      
+      }
+      
+      break;
+        
+  case 51:
+      Print_To_Screen("Save Succesful",12,5);     
+      break;
+      
+      
+      
     case 31:
       
       if(justLower == 1 || both == 1){

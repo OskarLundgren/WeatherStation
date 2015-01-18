@@ -15,6 +15,7 @@ int oneMinute = 0;
 int lastDayInBuffer = 0;
 int firstDayInBuffer = -1;
 int nSample = 1440;
+int Minute_Sample_Value = 1;
 Day newDay;
 
 Day New_Day(float min, float max, float avg){
