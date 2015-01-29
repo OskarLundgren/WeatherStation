@@ -116,23 +116,23 @@ void Init_Display(void){
   
   Write_Data_2_Display(0x00);
   Write_Data_2_Display(0x00);
-  Write_Command_2_Display(0x40);
+  Write_Command_2_Display(0x40); //Set text home address
   
   Write_Data_2_Display(0x00);
   Write_Data_2_Display(0x00);
-  Write_Command_2_Display(0x42);
+  Write_Command_2_Display(0x42); //Set graphic home address
   
   Write_Data_2_Display(0x28);
   Write_Data_2_Display(0x00);
-  Write_Command_2_Display(0x41);
+  Write_Command_2_Display(0x41); //Set text area
     
   Write_Data_2_Display(0x28);
   Write_Data_2_Display(0x00);
-  Write_Command_2_Display(0x43);  
+  Write_Command_2_Display(0x43); //Set graphic area
   
-  Write_Command_2_Display(0x80);  
+  Write_Command_2_Display(0x80);  //Or-mode
   
-  Write_Command_2_Display(0x94);  
+  Write_Command_2_Display(0x94); //Text on, graphic off 
   
   Clear_Display();
 }
