@@ -24,6 +24,7 @@ float limitValue = 0;
 int alarmSet = 0;
 int fastModeActivated = 0;
 int Timer_Interrupts;
+int Graphics_Mode = 0;
 
 void Timer_Delay_Setup(void){
   *AT91C_PMC_PCER = 1<<31; //Enables the clock for TC4;
@@ -32,7 +33,7 @@ void Timer_Delay_Setup(void){
   *AT91C_TC4_CCR = AT91C_TC_SWTRG;
   
   NVIC_ClearPendingIRQ(TC4_IRQn);
-  NVIC_SetPriority(TC4_IRQn,1);
+  NVIC_SetPriority(TC4_IRQn,3);
   NVIC_EnableIRQ(TC4_IRQn);
   
 
@@ -128,7 +129,7 @@ void Keypad_Menu_Action(int *button){
           Print_Temperature();
           Print_Statistics();
           Print_Menu_Attributes();
-          while(Read_Keypad()==1){}
+          while(Read_Keypad() == 1){}
           break;
         }   
         case 2:
@@ -193,6 +194,7 @@ void Keypad_Menu_Action(int *button){
       
       break;
     }
+    break;
     }
 
 
@@ -202,7 +204,7 @@ void Keypad_Menu_Action(int *button){
       
       
       switch(*button){
-
+        
         case 10:
         currentMenu = 0;
         Clear_Display();
@@ -304,7 +306,6 @@ void Keypad_Menu_Action(int *button){
         currentMenu = 0;
         Print_Menu_Attributes();
         Print_Temperature();
-        Setup_Interrupts(1);
         break;
         
         
@@ -314,7 +315,6 @@ void Keypad_Menu_Action(int *button){
         nSample = 60;
         fastModeActivated = 1;
         currentMenu = 41;
-        currentMenu = 41;
         Setup_Interrupts(1000);
         Clear_Display();
         Print_Menu_Attributes();
@@ -323,7 +323,6 @@ void Keypad_Menu_Action(int *button){
         currentMenu = 0;
         Print_Menu_Attributes();
         Print_Temperature();
-        Setup_Interrupts(1);
         break;
         
         
@@ -335,8 +334,6 @@ void Keypad_Menu_Action(int *button){
         
         Print_Temperature();
         Print_Menu_Attributes();
-        
-        Setup_Interrupts(1);
         
         while(Read_Keypad() == 10){}
      
@@ -442,6 +439,8 @@ void Keypad_Menu_Action(int *button){
         case 12:
           if(Sample_Value != -1){
             Minute_Sample_Value = Sample_Value;
+            Time_To_Log = 60/Minute_Sample_Value;
+            nSeconds = 0;
             
           }
           currentMenu = 51;

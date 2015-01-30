@@ -2,6 +2,7 @@
 #include "Common_Functions.h"
 #include "Temp_Module.h"
 #include "Display_Module.h"
+#include "Memory_Module.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,12 +12,16 @@ float tempLog[1440];
 Day weekBuffer[7];
 int tempLogPosition = 0;
 float temp;
-int oneMinute = 0;
+int nSeconds = 0;
 int lastDayInBuffer = 0;
 int firstDayInBuffer = -1;
 int nSample = 1440;
 int Minute_Sample_Value = 1;
 Day newDay;
+int Time_To_Log = 60;
+float minuteLog[10];
+int Minute_Log_Position = 0;
+int Time_To_Add_Value = 0;
 
 Day New_Day(float min, float max, float avg){
   
@@ -39,7 +44,7 @@ void Init_Temp(void){
   *AT91C_TC0_CMR = 3<<17; // Sets register A to load on falling edge and register B to load on rising edge
   
   NVIC_ClearPendingIRQ(TC0_IRQn);
-  NVIC_SetPriority(TC0_IRQn,1);
+  NVIC_SetPriority(TC0_IRQn,2);
   NVIC_EnableIRQ(TC0_IRQn);
   
   *AT91C_PIOB_PER = tempsensor;
@@ -47,7 +52,6 @@ void Init_Temp(void){
   *AT91C_PIOB_PPUDR = tempsensor;
   
 }
-
 
 void Timer_Setup(void){
   *AT91C_PMC_PCER = 1<<30; //Enables the clock for TC3;
@@ -58,7 +62,7 @@ void Timer_Setup(void){
   *AT91C_TC3_IER = AT91C_TC_CPCS;
   
   NVIC_ClearPendingIRQ(TC3_IRQn);
-  NVIC_SetPriority(TC3_IRQn,1);
+  NVIC_SetPriority(TC3_IRQn,0);
   NVIC_EnableIRQ(TC3_IRQn);
   
 
@@ -87,12 +91,18 @@ void Temp_Measure(void){
 void TC0_Handler(void){
  Setup_Interrupts(1000);
  while(nInterrupts < 400){}
-  int x = *AT91C_TC0_SR;   
+  int x = *AT91C_TC0_SR;
+ Setup_Interrupts(1);
 }
 
 void TC3_Handler(void){
    int x = *AT91C_TC3_SR;
-   oneMinute = 1;
+   nSeconds++;
+   if(nSeconds == Time_To_Log){
+      Log_Temp();
+      nSeconds = 0;
+      Time_To_Add_Value = 1;
+   }
 
 }
 
@@ -135,7 +145,13 @@ void Print_Temperature(void){
 }
 
 void Log_Temp(void){
-    tempLog[tempLogPosition++] = temp;
+    minuteLog[Minute_Log_Position++] = temp;
+    if(Minute_Log_Position == Minute_Sample_Value){
+      
+      Log_Minute_Average(minuteLog,Minute_Sample_Value);
+      Minute_Log_Position = 0;
+    
+    }
 }
 
 int Size_Of_TempLog(){
@@ -151,6 +167,14 @@ void Reset_TempLog(void){
 
 }
 
+void Log_Minute_Average(float Log[], int Array_Length){
+  float avgValue; 
+  avgValue = Find_Average(Log,Array_Length);
+  tempLog[tempLogPosition++] = avgValue;
+  
+
+}
+
 void Add_Values(void){
   float maxValue;
   float minValue; 
@@ -158,12 +182,13 @@ void Add_Values(void){
   
   maxValue = Find_Max();
   minValue = Find_Min();
-  avgValue = Find_Average();
+  avgValue = Find_Average(tempLog,nSample);
   
   
   
   newDay = New_Day(minValue,maxValue,avgValue);
   weekBuffer[lastDayInBuffer++] = newDay;
+  //Add_Day_To_Memory(newDay);
   if(lastDayInBuffer == 7){
     lastDayInBuffer = 0;
   }
@@ -205,17 +230,17 @@ float Find_Min(){
    return minTemp;
 }
 
-float Find_Average(){
+float Find_Average(float Log[], int Array_Length){
   float avgTemp;
   float calculateTemp;
   calculateTemp = 0;
   int i;
-  for(i = 0; i < nSample; i++){
+  for(i = 0; i < Array_Length; i++){
   
-    calculateTemp = calculateTemp + tempLog[i];
+    calculateTemp = calculateTemp + Log[i];
   }
   
-  avgTemp = calculateTemp/nSample;
+  avgTemp = calculateTemp/Array_Length;
   return avgTemp;
 }
 

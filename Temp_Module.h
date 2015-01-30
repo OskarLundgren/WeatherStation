@@ -2,13 +2,15 @@
 #define INCLUDE_TEMP_MODULE_H
 
 extern float temp;
-extern int oneMinute;
+extern int nSeconds;
 extern int tempLogPosition;
 extern float tempLog[1440];
 extern char converted[4];
 extern int currentMenu;
 extern int nSample;
 extern int Minute_Sample_Value;
+extern int Time_To_Log;
+extern int Time_To_Add_Value;
 
 typedef struct day{
   
@@ -18,6 +20,14 @@ typedef struct day{
   
   
 } Day;
+
+typedef struct minute{
+  
+  float Temp_Value;
+  struct minute *next;
+  
+  
+} Minute_Node;
 
 extern Day weekBuffer[7];
 
@@ -38,6 +48,8 @@ void Timer_Setup(void);
 void TC3_Handler(void);
 
 void Log_Temp(void);
+
+void Log_Minute_Average(float Log[], int Array_Length);
 
 int Size_Of_TempLog();
 

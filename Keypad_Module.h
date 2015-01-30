@@ -16,6 +16,7 @@ extern float higherLimit;
 extern int alarmSet;
 extern int fastModeActivated;
 extern int Sample_Value;
+extern int Graphics_Mode;
 
 void Timer_Delay_Setup(void);
 

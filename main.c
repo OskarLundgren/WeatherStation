@@ -7,34 +7,42 @@
 #include "Light_Module.h"
 #include "Temp_Module.h"
 #include "I2C_Module.h"
+#include "Memory_Module.h"
 #include <stdlib.h>
 
 
 
 int main(){
-  SystemInit();
+  SystemInit(); 
   Init_Display();
   Init_Temp();
   Init_Keypad();
-  Timer_Setup();
+  Light_Init();
+  PWM_Setup();
+  ADC_Setup();
+  //Init_I2C();
+  //Init_Memory();  
+  Startup_Screen();
+
+
+  
+  Print_Menu();
+  Timer_Setup();  
   Temp_Measure();
   Timer_Delay_Setup();
   Update_Temp();
-  Light_Init();
-  PWM_Setup();
-  ADC_Setup();  
-  Startup_Screen();
-  Print_Menu();
   Print_Temperature();
   Setup_Interrupts(1);
-  Init_I2C();  
+  
+  
   int button;
   int alarmActive = 0;
+
   
   while(1){
 
     
-    if(nInterrupts == 1){
+    if(nInterrupts == 1 && Graphics_Mode == 0){
       alarmActive ^= 1;
       Temp_Measure();
       Update_Temp();
@@ -43,25 +51,19 @@ int main(){
         Temp_Alarm();        
       }
       
-      Setup_Interrupts(1);
-      
-      
+      Setup_Interrupts(1);     
     }
+  
     
-    if(oneMinute == 1){
-      Log_Temp();
-      oneMinute = 0;
-    }
     
     if(tempLogPosition == nSample){
       Add_Values();
       tempLogPosition = 0;
-      
-      Reset_TempLog();
       if(currentMenu == 1){
       Print_Statistics();
       }
     }
+
     
     button = Read_Keypad();
     if(buttonWasPressed == 1){

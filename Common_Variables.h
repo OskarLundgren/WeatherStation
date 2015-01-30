@@ -33,9 +33,10 @@
 #define PWM_CDTYUPD ((volatile unsigned int*)0x400942E8)
 #define PWM_CCNT ((volatile unsigned int*)0x400942F4)
 
-#define fastMode ((unsigned int)41999999)
-#define normalMode ((unsigned int)((42000000*60)-1))
+#define fastMode ((unsigned int)(42000000/60)-1)
+#define normalMode ((unsigned int) 42000000-1)
 
 #define tempsensor ((unsigned int)1<<25)
+
 
 #endif
